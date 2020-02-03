@@ -168,13 +168,13 @@ vg$genres <- as.double(vg.genres)
 ```
 ## Comparison of the Random Forest and Gradient Boosted Model on the Validation Set
 ```{r}
-predrf <- (modelrf,vg)
+predrf <- ml_predict(modelrf,vg)
 ml_regression_evaluator(predrf, label_col = "rating")
 ```
 
 
 ```{r}
-predgb <- (modelgb,vg)
+predgb <- ml_predict(modelgb,vg)
 ml_regression_evaluator(predgb, label_col = "rating")
 ```
 
