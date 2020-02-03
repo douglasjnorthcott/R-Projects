@@ -164,17 +164,19 @@ vg[vg$genres == "Film-Noir", "genres"] <- 17
 vg[vg$genres == "Documentary", "genres"] <- 18
 vg[vg$genres == "IMAX", "genres"] <- 19
 vg[vg$genres == "(no genres listed)", "genres"] <- 20
-vg$genres <- as.double(vg.genres)
+vg$genres <- as.double(vg$genres)
+write.csv(vg, "C:\\Users\\dougl\\OneDrive\\Email attachments\\Documents\\vg.csv", row.names = FALSE)
+vgspark <- spark_read_csv(sc, name = "vg", path = "C:\\Users\\dougl\\OneDrive\\Email
 ```
 ## Comparison of the Random Forest and Gradient Boosted Model on the Validation Set
 ```{r}
-predrf <- ml_predict(modelrf,vg)
+predrf <- ml_predict(modelrf,vgspark)
 ml_regression_evaluator(predrf, label_col = "rating")
 ```
 
 
 ```{r}
-predgb <- ml_predict(modelgb,vg)
+predgb <- ml_predict(modelgb,vgspark)
 ml_regression_evaluator(predgb, label_col = "rating")
 ```
 
